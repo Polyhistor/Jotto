@@ -1,3 +1,5 @@
+import { actionTypes } from "../actions";
+
 /**
  * @function successReducer
  * @param {array} state - Array of guessed words
@@ -6,5 +8,10 @@
  */
 
 export default (state, action) => {
-  return null;
+  switch (action.type) {
+    case actionTypes.CORRECT_GUESS:
+      return true;
+    default:
+      return state;
+  }
 };
