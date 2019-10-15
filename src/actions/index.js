@@ -1,11 +1,14 @@
 export const actionTypes = {
-  CORRECT_GUESS: "CORRECT_GUESS"
+  CORRECT_GUESS: "CORRECT_GUESS",
+  GUESS_WORD: "GUESS_WORD"
 };
 
 /**
- * @function correctGuess
- * @returns {object} - Action object with type 'CORRECT_GUESS'
+ * It takes a state as an argument and it updates the state based on the correct guess
+ * @function guessWord
+ * @param {object} guessedWord - the current state
+ * @returns {function} - function that updates the state
  */
-export function correctGuess() {
-  return { type: actionTypes.CORRECT_GUESS };
-}
+export const guessWord = guessedWord => {
+  return function(dispatch, getState) {};
+};
