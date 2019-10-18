@@ -64,10 +64,9 @@ describe("render", () => {
 
 describe("redux props", () => {
   test("has success piece of state as prop", () => {
-    const success = true;
-    const wrapper = setup({ success });
-    const successProp = wrapper.instance();
-
-    expect(successProp).toBe(success);
+    const store = storeFactory({ success: false });
+    // it is essential that we just dive one level
+    const wrapper = shallow(<Input store={store} />).dive(); // note, single dive
+    expect(wrapper.props().success).toBe(false);
   });
 });
