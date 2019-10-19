@@ -66,9 +66,17 @@ describe("render", () => {
 describe("redux props", () => {
   test("has success piece of state as prop", () => {
     const success = true;
-    const wrapper = setup({ success });
-    const successProp = wrapper.instance();
+    const store = storeFactory({ success });
+    // it is essential that we just dive one level
+    const wrapper = shallow(<Input store={store} />).dive(); // note, single dive
+    expect(wrapper.props().success).toBe(true);
+  });
 
-    expect(successProp).toBe(success);
+  test("'guessWord' action creator is a function prop", () => {
+    const success = true;
+    const store = storeFactory({ success });
+    const wrapper = shallow(<Input store={store} />).dive();
+    const guessWordProp = wrapper.props().guessWord;
+    expect(guessWordProp).toBeInstanceOf(Function);
   });
 });
