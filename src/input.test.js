@@ -16,6 +16,7 @@ const setup = (initialState = {}) => {
   const wrapper = shallow(<Input store={store} />)
     .dive()
     .dive();
+
   return wrapper;
 };
 
@@ -62,4 +63,12 @@ describe("render", () => {
   });
 });
 
-describe("update state", () => {});
+describe("redux props", () => {
+  test("has success piece of state as prop", () => {
+    const success = true;
+    const wrapper = setup({ success });
+    const successProp = wrapper.instance();
+
+    expect(successProp).toBe(success);
+  });
+});
