@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -8,6 +8,10 @@ import Input from "./input";
 import { getSecretWord } from "./actions";
 
 const App = props => {
+  useEffect(() => {
+    props.getSecretWord();
+  });
+
   return (
     <div className="container">
       <h1>Jotto</h1>
