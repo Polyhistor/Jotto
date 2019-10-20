@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./App.css";
 
@@ -7,8 +7,8 @@ import Congrats from "./Congrats";
 import Input from "./input";
 import { getSecretWord } from "./actions";
 
-const App = props => {
-  useEffect(() => {
+export const UnconnectedApp = props => {
+  React.useEffect(() => {
     props.getSecretWord();
   }, []);
 
@@ -30,4 +30,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { getSecretWord }
-)(App);
+)(UnconnectedApp);

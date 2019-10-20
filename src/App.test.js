@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 
 import setupTests from "./setupTests";
 import { storeFactory } from "../test/testUtils";
-import App from "./App";
+import App, { UnconnectedApp } from "./App";
 import GuessedWords from "./Guessedwords";
 import thunk from "redux-thunk";
 
@@ -56,18 +56,18 @@ it("'getSecretWord' runs on App mount", () => {
   const props = {
     getSecretWord: getSecretWordMock,
     success: true,
-    guessedWord: []
+    guessedWords: []
   };
 
+  React.useEffect = jest.spyOn(React, "useEffect").mockImplementation(f => f());
+
   // set up app component with getSecretWordMock as the getSecretWord prop
-  const wrapper = mount(
-    <Provider store={store}>
-      <App {...props} />
-    </Provider>
-  );
+  const wrapper = shallow(<UnconnectedApp {...props} />);
 
   // check to see if our mock ran
   const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
 
   expect(getSecretWordCallCount).toBe(1);
+
+  getSecretWordMock.mockClear();
 });
