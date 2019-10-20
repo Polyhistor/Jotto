@@ -67,7 +67,7 @@ it("'getSecretWord' runs on App mount", () => {
   );
 
   // check to see if our mock ran
-  const getSecretWordCallCount = getSecretWordMock.mock.calls;
+  const getSecretWordCallCount = getSecretWordMock.mock.calls.length;
 
-  console.log(getSecretWordCallCount);
+  expect(getSecretWordCallCount).toBe(1);
 });

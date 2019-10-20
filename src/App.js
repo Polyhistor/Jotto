@@ -10,7 +10,7 @@ import { getSecretWord } from "./actions";
 const App = props => {
   useEffect(() => {
     props.getSecretWord();
-  });
+  }, []);
 
   return (
     <div className="container">
