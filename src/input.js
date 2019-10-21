@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { guessWord } from "./actions";
 
-const Input = props => {
+export const UnconnecInput = props => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(e.target);
+    console.log(state);
+    guessWord(state);
+  };
+
+  const [state, setState] = useState("");
+
   const contents = props.success ? null : (
-    <form className="form-inline">
+    <form onSubmit={e => handleSubmit(e)} className="form-inline">
       <input
         className="mb-2 mx-sm-3"
         type="text"
         placeholder="enter guess"
         data-test="input-box"
+        onChange={e => setState(e.target.value)}
+        value={state}
       ></input>
       <button
         className="btn btn-primary"
         type="submit"
         data-test="submit-button"
+        onClick={() => props.guessWord("train")}
       >
         Submit
       </button>
@@ -30,4 +42,4 @@ const mapStateToProps = ({ success }) => {
 export default connect(
   mapStateToProps,
   { guessWord }
-)(Input);
+)(UnconnecInput);
