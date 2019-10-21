@@ -26,7 +26,7 @@ export const UnconnecInput = props => {
         className="btn btn-primary"
         type="submit"
         data-test="submit-button"
-        onClick={() => props.guessWord("train")}
+        onClick={() => props.guessWord(state)}
       >
         Submit
       </button>
