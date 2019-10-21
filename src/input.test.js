@@ -97,7 +97,7 @@ describe("`guessWord` action creator call", () => {
 
     // simulated click
     const submitButton = findByTestAttr(wrapper, "submit-button");
-    submitButton.simulate("click");
+    submitButton.simulate("click", { preventDefault() {} });
   });
 
   afterEach(() => {
@@ -120,7 +120,7 @@ describe("`guessWord` action creator call", () => {
     input.simulate("change", eventObj);
 
     const submitButton = findByTestAttr(wrapper, "submit-button");
-    submitButton.simulate("click");
+    submitButton.simulate("click", { preventDefault() {} });
 
     expect(guessWordMock.mock.calls[1][0]).toBe("test");
   });

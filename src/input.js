@@ -5,15 +5,13 @@ import { guessWord } from "./actions";
 export const UnconnecInput = props => {
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target);
-    console.log(state);
-    guessWord(state);
+    props.guessWord(state);
   };
 
   const [state, setState] = useState("");
 
   const contents = props.success ? null : (
-    <form onSubmit={e => handleSubmit(e)} className="form-inline">
+    <form className="form-inline">
       <input
         className="mb-2 mx-sm-3"
         type="text"
@@ -26,7 +24,7 @@ export const UnconnecInput = props => {
         className="btn btn-primary"
         type="submit"
         data-test="submit-button"
-        onClick={() => props.guessWord(state)}
+        onClick={e => handleSubmit(e)}
       >
         Submit
       </button>
